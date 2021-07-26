@@ -14,9 +14,8 @@
 | birth_date           | date        | null: false                                 |
 
 ## Association
- has_many: items, through: user_items
+ has_many: items
  has_many: user_items
- has_one: addresses
 
  
 
@@ -28,8 +27,9 @@
 
 
 ## Association
- belongs_to: users
- belongs_to: items
+ belongs_to: user
+ belongs_to: item
+ has_one: addresses
 
 
 
@@ -48,23 +48,21 @@
 
 
 ## Association
- has_many: users, through: user_items
- has_many: user_items
- has_one: addresses
+ has_many: users
+ has_one: user_items
  
 
 ## addressesテーブル
 
 | Column               | Type        | Options                         |
 |:--------------------:|------------:|:-------------------------------:|
-| postal_code          | integer     | null: false                     |
+| postal_code          | string     | null: false                     |
 | prefecture           | string      | null: false                     |
 | city                 | string      | null: false                     |
-| addresses            | integer     | null: false                     |
+| addresses            | string      | null: false                     |
 | building_name        | string      |                                 |
 | phone_number         | integer     | null: false                     |
 
 
 ## Association
- belongs_to: users
- belongs_to: items
+ belongs_to: user_item
