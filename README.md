@@ -50,7 +50,7 @@
 
 
 ## Association
- has_many: user
+ has_many: users
  has_one: user_item
  
 
@@ -64,7 +64,7 @@
 | addresses            | string      | null: false                     |
 | building_name        | string      |                                 |
 | phone_number         | string      | null: false                     |
-| user_id              | reference   | null: false, foreign_key: true  |
+| user_item            | reference   | null: false, foreign_key: true  |
 
 
 ## Association
