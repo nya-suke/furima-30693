@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         has_many :messages
   with_options presence: true do
     validates :birth_date
     validates :nickname
@@ -16,5 +17,7 @@ class User < ApplicationRecord
       end
   end
   validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
+  has_many :items
+  has_many :user_items
 
 end
