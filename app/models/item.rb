@@ -6,8 +6,9 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :prefecture
   belongs_to :scheduled_delivery
-  #has_one :user_item
+  has_one :user_item
   has_one_attached :image
+  
   with_options presence: true do
     validates :image
     validates :name, :information
