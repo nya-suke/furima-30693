@@ -9,7 +9,7 @@ RSpec.describe UserItemAddress, type: :model do
   end
   describe '商品出品' do
     context '内容に問題がない場合' do
-    it 'postal_codeとprefecture_idとcityとaddressesとphone_numberが存在すれば登録できること' do
+    it 'postal_codeとprefecture_idとcityとaddressesとphone_numberとtokenが存在すれば登録できること' do
       expect(@user_item_address).to be_valid
     end
 
@@ -73,6 +73,12 @@ RSpec.describe UserItemAddress, type: :model do
       @user_item_address.phone_number = '090111111'
       @user_item_address.valid?
       expect(@user_item_address.errors.full_messages).to include "Phone number is too short"
+    end
+
+    it 'tokenが空では登録できないこと' do
+      @user_item_address.token = nil
+      @user_item_address.valid?
+      expect(@user_item_address.errors.full_messages).to include "Token can't be blank"
     end
 
 

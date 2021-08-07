@@ -23,7 +23,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    render "edit"
+    if @item.user_item.present?
+      redirect_to root_path
+    else
+     render "edit"
+    end
   end
 
   def update
