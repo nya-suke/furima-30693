@@ -76,7 +76,7 @@ RSpec.describe UserItemAddress, type: :model do
     end
 
     it 'phone_numberが12桁以上であれば登録できないこと' do
-      @user_item_address.phone_number = 0 * 12
+      @user_item_address.phone_number = "0" * 12
       @user_item_address.valid?
       expect(@user_item_address.errors.full_messages).to include "Phone number is too short"
     end
