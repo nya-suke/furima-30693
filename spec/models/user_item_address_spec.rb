@@ -7,7 +7,7 @@ RSpec.describe UserItemAddress, type: :model do
     @user_item_address = FactoryBot.build(:user_item_address,user_id: user.id, item_id: item.id)
     sleep(0.1)
   end
-  describe '商品出品' do
+  describe '商品購入' do
     context '内容に問題がない場合' do
     it 'postal_codeとprefecture_idとcityとaddressesとphone_numberとtokenが存在すれば登録できること' do
       expect(@user_item_address).to be_valid
@@ -73,6 +73,24 @@ RSpec.describe UserItemAddress, type: :model do
       @user_item_address.phone_number = '090111111'
       @user_item_address.valid?
       expect(@user_item_address.errors.full_messages).to include "Phone number is too short"
+    end
+
+    it 'phone_numberが12桁以上であれば登録できないこと' do
+      @user_item_address.phone_number = 0 * 12
+      @user_item_address.valid?
+      expect(@user_item_address.errors.full_messages).to include "Phone number is too short"
+    end
+
+    it 'user_idが空では登録できないこと' do
+      @user_item_address.user_id = ''
+      @user_item_address.valid?
+      expect(@user_item_address.errors.full_messages).to include "User can't be blank"
+    end
+
+    it 'item_idが空では登録できないこと' do
+      @user_item_address.item_id = ''
+      @user_item_address.valid?
+      expect(@user_item_address.errors.full_messages).to include "Item can't be blank"
     end
 
     it 'tokenが空では登録できないこと' do
